@@ -1,0 +1,232 @@
+.swiper-slide
+	width: 20%
+	@media (max-width: 1024px)
+		width: 30%
+	@media (max-width: 768px)
+		width: 45%
+	@media (max-width: 640px)
+		width: 65%
+
+.item
+	&__img
+		position: relative
+		-webkit-transform: translateZ(0px) // to avoid bug with blinking during slide change in ios Safari
+		img
+			display: block
+			width: 100%
+			height: auto
+
+	&__shadow
+		position: absolute
+		top: 0
+		right: 0
+		bottom: 0
+		left: 0
+		transition: opacity .35s ease
+		&--left
+			opacity: 1
+			background-image: linear-gradient(to left,rgba(0,0,0,.5),rgba(0,0,0,0))
+		&--right
+			opacity: 0
+			background-image: linear-gradient(to right,rgba(0,0,0,.5),rgba(0,0,0,0))
+
+	&__description
+		opacity: 0
+		transition: opacity .45s ease
+		text-align: center
+
+	&__title
+		display: flex
+		align-items: center
+		justify-content: center
+		min-height: 80px
+		font-size: 22px
+		margin: 0 -100%
+		@media (max-width: 768px)
+			margin: 0 -50%
+		@media (max-width: 640px)
+			margin: 0 -25%
+
+	&__marks
+		position: absolute
+		top: -9px
+		right: -33px
+
+	&__sidebar
+		display: flex
+		flex-direction: column
+		flex-wrap: wrap
+		justify-content: center
+		position: relative
+		width: 64px
+		height: 64px
+		background-color: rgba(255, 255, 255, .95)
+		border-radius: 10px
+		overflow: hidden
+		margin-bottom: 3px
+		padding: 3px
+		box-sizing: border-box
+
+		span
+			width: 100%
+			line-height: 1.1
+			color: #000
+			font-weight: 400
+
+		&-title
+			font-size: 14px
+
+			&--sm
+				font-size: 13px
+
+		&-number
+			font-size: 25px
+
+		&-link
+			position: absolute
+			top: 0
+			left: 0
+			right: 0
+			bottom: 0
+			font-size: 0
+			z-index: 1
+
+		&-icon
+			height: 33px
+			background-position: center
+			background-repeat: no-repeat
+
+			&--youtube
+				background-image: url('../../assets/svg/youtube.svg')
+
+	&__genre
+		position: relative
+
+		&-box
+			transition: opacity .3s ease
+			transition-delay: .1s
+			&--sm
+				align-items: center
+
+			&--lg
+				opacity: 0
+				position: absolute
+				right: 0
+				bottom: 0
+				margin: 0
+				width: auto
+				height: auto
+				min-height: 100%
+		&-element
+			display: flex
+			align-items: center
+			flex-shrink: 0
+			overflow: hidden
+
+		&-icon
+			background-repeat: no-repeat
+			background-position: center
+			background-size: cover
+			&--12
+				background-image: url('../../assets/img/genres/12.png')
+			&--14
+				background-image: url('../../assets/img/genres/14.png')
+			&--16
+				background-image: url('../../assets/img/genres/16.png')
+			&--18
+				background-image: url('../../assets/img/genres/18.png')
+			&--27
+				background-image: url('../../assets/img/genres/27.png')
+			&--28
+				background-image: url('../../assets/img/genres/28.png')
+			&--35
+				background-image: url('../../assets/img/genres/35.png')
+			&--36
+				background-image: url('../../assets/img/genres/36.png')
+			&--37
+				background-image: url('../../assets/img/genres/37.png')
+			&--53
+				background-image: url('../../assets/img/genres/53.png')
+			&--80
+				background-image: url('../../assets/img/genres/80.png')
+			&--99
+				background-image: url('../../assets/img/genres/99.png')
+			&--878
+				background-image: url('../../assets/img/genres/878.png')
+			&--9648
+				background-image: url('../../assets/img/genres/9648.png')
+			&--10402
+				background-image: url('../../assets/img/genres/10402.png')
+			&--10749
+				background-image: url('../../assets/img/genres/10749.png')
+			&--10751
+				background-image: url('../../assets/img/genres/10751.png')
+			&--10752
+				background-image: url('../../assets/img/genres/10752.png')
+			&--10770
+				background-image: url('../../assets/img/genres/10770.png')
+
+		&-name
+			color: #000000
+
+		&-box--sm
+			.item__genre
+				&-element
+					margin: 3px
+					width: calc(50% - 6px)
+					height: calc(50% - 6px)
+				&-icon
+					width: 100%
+					height: 100%
+				&-name
+					display: none
+
+		&-box--lg
+			.item__genre
+				&-element
+					margin: 6px 5px
+				&-icon
+					width: 30px
+					height: 30px
+				&-name
+					margin: 0 5px 0 10px
+					cursor: default
+
+		&:hover
+			.item__genre
+				&-box--sm
+					opacity: 0
+				&-box--lg
+					opacity: 1
+
+	&__bottom
+		margin: 0 -100%
+		padding: 15px 0
+		line-height: 1.4
+		@media (max-width: 768px)
+			margin: 0 -50%
+		@media (max-width: 640px)
+			margin: 0 -25%
+
+	&__cast
+		margin-bottom: 10px
+
+	&__director, &__actors
+		display: block
+		font-weight: 500
+
+		span
+			font-weight: 400
+
+	&__overview
+		font-size: 17px
+
+
+.swiper-slide-active
+	.item__description
+		opacity: 1
+	.item__shadow
+		opacity: 0
+	& ~ .swiper-slide
+		.item__shadow--right
+			opacity: 1

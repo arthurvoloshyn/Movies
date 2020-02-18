@@ -1,0 +1,38 @@
+body
+  font-size: 16px
+  min-width: 320px
+  line-height: 1.2
+  overflow-x: hidden
+  color: #fff
+  background: #000
+  box-sizing: border-box
+
+.content
+  display: flex
+  flex-wrap: wrap
+  min-height: 100vh
+  position: relative
+
+.credentials
+	width: 100%
+	text-align: right
+	margin: 6px 10px 0 10px
+	font-size: 12px
+	p
+		margin: 0
+	a
+		color: #ffffff
+
+// CSS Transition animation
+.animation
+  &-enter
+    opacity: 0
+  &-enter-active
+    transition: opacity 1000ms
+  &-enter-active
+    opacity: 1
+  &-exit
+    opacity: 1
+  &-exit-active
+    opacity: 0
+    transition: opacity 500ms
