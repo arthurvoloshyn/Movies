@@ -1,9 +1,9 @@
-export function ajaxRequest(url) {
-    return fetch(
+export const ajaxRequest = (url) => (
+    fetch(
             url,
             { method: 'GET' }
         )
             .then( responseText => responseText.json() )
             .then( responseParsed => responseParsed )
-            .catch( error => console.error('Ajax request error:', error) );
-}
+            .catch( error => error )
+);

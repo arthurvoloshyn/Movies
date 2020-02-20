@@ -1,5 +1,17 @@
 {
   "homepage": "https://ArturW1998.github.io/Movies",
+  "author": "Artur Voloshyn <grand_faraon_93@mail.ru>",
+  "description": "Project shows movies currently beibg played in Ukrainian movie theaters.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArturW1998/Movies"
+  },
+  "bugs": "https://github.com/ArturW1998/Movies/issues",
+  "license": "MIT",
+  "keywords": [
+    "React",
+    "ES6"
+  ],
   "name": "Movies",
   "version": "0.1.0",
   "private": true,
@@ -35,6 +47,8 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "^4.12.0"
+    "classnames": "^2.2.6",
+    "node-sass": "^4.12.0",
+    "prop-types": "^15.7.2"
   }
 }

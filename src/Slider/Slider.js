@@ -1,22 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import 'swiper/dist/css/swiper.css';
+
 import './Slider.sass';
 
 import SingleSlide from './SingleSlide/SingleSlide';
 
-class Slider extends React.Component {
+const Slider = ({ movies }) => (
+    <div className="swiper-container">
+        <div className="swiper-wrapper">
+            {movies.map((item) => (
+                <SingleSlide key={item.id} movie={item} />
+            ))}
+        </div>
+    </div>
+);
 
-    render() {
-        return (
-            <div className="swiper-container">
-                <div className="swiper-wrapper">
-                    {this.props.movies.map((item) => (
-                        <SingleSlide key={item.id} movie={item}/>
-                    ))}
-                </div>
-            </div>
-        );
-    }
-}
+Slider.propTypes = {
+    movies: PropTypes.array
+};
+
+Slider.defaultProps = {
+    movies: []
+};
 
 export default Slider;

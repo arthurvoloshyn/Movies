@@ -1,11 +1,10 @@
+@import "../styles/variables.sass"
+@import "../styles/placeholder.sass"
+
 .loader
-	position: absolute
-	top: 0
-	right: 0
-	bottom: 0
-	left: 0
-	background: #000
-	z-index: 4
+	@extend %cover
+	background-color: #000
+	z-index: 2
 
 	&__spinner
 		position: absolute
@@ -15,26 +14,26 @@
 		&-square
 			width: 40px
 			height: 40px
-			background-color: #ffffff
+			background-color: #fff
 			margin: 100px auto
 			-webkit-animation: sk-rotateplane 1.2s infinite ease-in-out
 			animation: sk-rotateplane 1.2s infinite ease-in-out
 
 @-webkit-keyframes sk-rotateplane
 	0%
-		-webkit-transform: perspective(120px)
+		-webkit-transform: perspective($rotate-plane-perspective)
 	50%
-		-webkit-transform: perspective(120px) rotateY(180deg)
+		-webkit-transform: perspective($rotate-plane-perspective) rotateY($rotate-plane-degree)
 	100%
-		-webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg)
+		-webkit-transform: perspective($rotate-plane-perspective) rotateY($rotate-plane-degree) rotateX($rotate-plane-degree)
 
 @keyframes sk-rotateplane
 	0%
-		transform: perspective(120px) rotateX(0deg) rotateY(0deg)
-		-webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+		transform: perspective($rotate-plane-perspective) rotateX($start-rotate-plane-degree) rotateY($start-rotate-plane-degree)
+		-webkit-transform: perspective($rotate-plane-perspective) rotateX($start-rotate-plane-degree) rotateY($start-rotate-plane-degree)
 	50%
-		transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
-		-webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+		transform: perspective($rotate-plane-perspective) rotateX($middle-rotate-plane-degree) rotateY($start-rotate-plane-degree)
+		-webkit-transform: perspective($rotate-plane-perspective) rotateX($middle-rotate-plane-degree) rotateY($start-rotate-plane-degree)
 	100%
-		transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg)
-		-webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg)
+		transform: perspective($rotate-plane-perspective) rotateX(-$rotate-plane-degree) rotateY($end-rotate-plane-degree)
+		-webkit-transform: perspective($rotate-plane-perspective) rotateX(-$rotate-plane-degree) rotateY($end-rotate-plane-degree)
