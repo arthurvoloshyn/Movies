@@ -43,7 +43,8 @@ const getTMDbInfo = async (movieItemsTMDb) => {
 
     if (movieItemsTMDb.length) {
         for (let i = 0; i < movieItemsTMDb.length; i++) {
-            const currTMDbId = movieItemsTMDb[i].id;
+            const currTMDbItem = movieItemsTMDb[i];
+            const currTMDbId = currTMDbItem.id;
             const requestTMDb = `${BASE_PATH}/${currTMDbId}?${API_KEY}${TMDbAPI}&${DATA_PARAM}${DATA_QUERY}&${LANGUAGE_PARAM}${LANGUAGE_QUERY}`;
 
             const movieInfo = await ajaxRequest(requestTMDb);
@@ -60,9 +61,12 @@ const getTMDbInfo = async (movieItemsTMDb) => {
                 }
             }
 
-            movieItemsTMDb[i].imdb_id = movieInfo.imdb_id;
-            movieItemsTMDb[i].trailer_url = trailerUrl;
-            movieItemsTMDb[i].genres = movieInfo.genres;
+            movieItemsTMDb[i] = {
+              ...currTMDbItem,
+                imdb_id: movieInfo.imdb_id,
+                trailer_url: trailerUrl,
+                genres: movieInfo.genres
+            };
         }
     }
 
@@ -75,7 +79,8 @@ const getOMDbInfo = async (movieItemsTMDb) => {
 
     if (movieItemsTMDb.length) {
         for (let i = 0; i < movieItemsTMDb.length; i++) {
-            const currIMDbId = movieItemsTMDb[i].imdb_id;
+            const currTMDbItem = movieItemsTMDb[i];
+            const currIMDbId = currTMDbItem.imdb_id;
             const requestOMDb = `${OMDB_BASE_PATH}?${OMDB_I_PARAM}${currIMDbId}&${OMDB_API_KEY}${OMDbAPI}`;
 
             const movieInfo = await ajaxRequest(requestOMDb);
@@ -84,11 +89,14 @@ const getOMDbInfo = async (movieItemsTMDb) => {
                 movieInfo.imdbRating = defaultImdbRating;
             }
 
-            movieItemsTMDb[i].imdbRating = movieInfo.imdbRating;
-            movieItemsTMDb[i].director = movieInfo.Director;
-            movieItemsTMDb[i].actors = movieInfo.Actors;
-            movieItemsTMDb[i].metascore = movieInfo.Metascore; // may be "N/A"
-            movieItemsTMDb[i].year = movieInfo.Year;
+            movieItemsTMDb[i] = {
+                ...currTMDbItem,
+                imdbRating: movieInfo.imdbRating,
+                director: movieInfo.Director,
+                actors: movieInfo.Actors,
+                metascore: movieInfo.Metascore, // may be "N/A"
+                year: movieInfo.Year
+            };
         }
     }
 
