@@ -1,0 +1,55 @@
+@import '../styles/variables';
+@import '../styles/placeholder';
+
+.loader {
+  @extend %cover;
+  background-color: #000;
+  z-index: 2;
+
+  &__spinner {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    &-square {
+      -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+      animation: sk-rotateplane 1.2s infinite ease-in-out;
+      background-color: #fff;
+      height: 40px;
+      margin: 100px auto;
+      width: 40px;
+    }
+  }
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% {
+    -webkit-transform: perspective($rotate-plane-perspective);
+  }
+
+  50% {
+    -webkit-transform: perspective($rotate-plane-perspective) rotateY($rotate-plane-degree);
+  }
+
+  100% {
+    -webkit-transform: perspective($rotate-plane-perspective) rotateY($rotate-plane-degree) rotateX($rotate-plane-degree);
+  }
+}
+
+@keyframes sk-rotateplane {
+  0% {
+    -webkit-transform: perspective($rotate-plane-perspective) rotateX($start-rotate-plane-degree) rotateY($start-rotate-plane-degree);
+    transform: perspective($rotate-plane-perspective) rotateX($start-rotate-plane-degree) rotateY($start-rotate-plane-degree);
+  }
+
+  50% {
+    -webkit-transform: perspective($rotate-plane-perspective) rotateX($middle-rotate-plane-degree) rotateY($start-rotate-plane-degree);
+    transform: perspective($rotate-plane-perspective) rotateX($middle-rotate-plane-degree) rotateY($start-rotate-plane-degree);
+  }
+
+  100% {
+    -webkit-transform: perspective($rotate-plane-perspective) rotateX(-$rotate-plane-degree) rotateY($end-rotate-plane-degree);
+    transform: perspective($rotate-plane-perspective) rotateX(-$rotate-plane-degree) rotateY($end-rotate-plane-degree);
+  }
+}

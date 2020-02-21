@@ -1,0 +1,52 @@
+body {
+  background: #000;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.2;
+  min-width: 320px;
+  overflow-x: hidden;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  position: relative;
+}
+
+.credentials {
+  font-size: 12px;
+  margin: 6px 10px 0 10px;
+  text-align: right;
+  width: 100%;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: #fff;
+  }
+}
+
+// CSS Transition animation
+.animation {
+  &-enter {
+    opacity: 0;
+  }
+
+  &-enter-active {
+    opacity: 1;
+    transition: opacity 1000ms;
+  }
+
+  &-exit {
+    opacity: 1;
+  }
+
+  &-exit-active {
+    opacity: 0;
+    transition: opacity 500ms;
+  }
+}

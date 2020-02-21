@@ -1,0 +1,344 @@
+@import '../../styles/placeholder';
+
+.swiper-slide {
+  width: 20%;
+
+  @media (max-width: 1024px) {
+    width: 30%;
+  }
+
+  @media (max-width: 768px) {
+    width: 45%;
+  }
+
+  @media (max-width: 640px) {
+    width: 65%;
+  }
+}
+
+.item {
+  &__img {
+    position: relative;
+    -webkit-transform: translateZ(0); // to avoid bug with blinking during slide change in ios Safari
+
+    img {
+      display: block;
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  &__shadow {
+    @extend %cover;
+    transition: opacity 0.35s ease;
+
+    &--left {
+      background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+      opacity: 1;
+    }
+
+    &--right {
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+      opacity: 0;
+    }
+  }
+
+  &__description {
+    opacity: 0;
+    text-align: center;
+    transition: opacity 0.45s ease;
+  }
+
+  &__title {
+    align-items: center;
+    display: flex;
+    font-size: 22px;
+    justify-content: center;
+    margin: 0 -100%;
+    min-height: 80px;
+    padding-bottom: 20px;
+
+    @media (max-width: 768px) {
+      margin: 0 -50%;
+    }
+
+    @media (max-width: 640px) {
+      margin: 0 -25%;
+    }
+  }
+
+  &__marks {
+    position: absolute;
+    right: -33px;
+    top: -9px;
+  }
+
+  &__sidebar {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 64px;
+    justify-content: center;
+    margin-bottom: 3px;
+    overflow: hidden;
+    padding: 3px;
+    position: relative;
+    width: 64px;
+
+    span {
+      color: #000;
+      font-weight: 400;
+      line-height: 1.1;
+      width: 100%;
+    }
+
+    &-title {
+      font-size: 14px;
+
+      &--sm {
+        font-size: 13px;
+      }
+    }
+
+    &-number {
+      font-size: 25px;
+    }
+
+    &-link {
+      @extend %cover;
+      font-size: 0;
+      z-index: 1;
+    }
+
+    &-icon {
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 33px;
+
+      &--youtube {
+        background-image: url('../../assets/svg/youtube.svg');
+      }
+    }
+  }
+
+  &__genre {
+    position: relative;
+
+    &-box {
+      transition: opacity 0.3s ease;
+      transition-delay: 0.1s;
+
+      &--sm {
+        align-items: center;
+      }
+
+      &--lg {
+        bottom: 0;
+        height: auto;
+        margin: 0;
+        min-height: 100%;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        width: auto;
+      }
+    }
+
+    &-element {
+      align-items: center;
+      display: flex;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    &-icon {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      &--adventures {
+        background-image: url('../../assets/img/genres/adventures.png');
+      }
+
+      &--fantasy {
+        background-image: url('../../assets/img/genres/fantasy.png');
+      }
+
+      &--cartoon {
+        background-image: url('../../assets/img/genres/cartoon.png');
+      }
+
+      &--drama {
+        background-image: url('../../assets/img/genres/drama.png');
+      }
+
+      &--horrors {
+        background-image: url('../../assets/img/genres/horrors.png');
+      }
+
+      &--action-movie {
+        background-image: url('../../assets/img/genres/action-movie.png');
+      }
+
+      &--comedy {
+        background-image: url('../../assets/img/genres/comedy.png');
+      }
+
+      &--history {
+        background-image: url('../../assets/img/genres/history.png');
+      }
+
+      &--western-film {
+        background-image: url('../../assets/img/genres/western-film.png');
+      }
+
+      &--thriller {
+        background-image: url('../../assets/img/genres/thriller.png');
+      }
+
+      &--crime {
+        background-image: url('../../assets/img/genres/crime.png');
+      }
+
+      &--documentary {
+        background-image: url('../../assets/img/genres/documentary.png');
+      }
+
+      &--fantastic {
+        background-image: url('../../assets/img/genres/fantastic.png');
+      }
+
+      &--detective {
+        background-image: url('../../assets/img/genres/detective.png');
+      }
+
+      &--music {
+        background-image: url('../../assets/img/genres/music.png');
+      }
+
+      &--melodrama {
+        background-image: url('../../assets/img/genres/melodrama.png');
+      }
+
+      &--family {
+        background-image: url('../../assets/img/genres/family.png');
+      }
+
+      &--military {
+        background-image: url('../../assets/img/genres/military.png');
+      }
+
+      &--show {
+        background-image: url('../../assets/img/genres/show.png');
+      }
+
+      &--default {
+        background-image: url('../../assets/img/genres/default.png');
+      }
+    }
+
+    &-name {
+      color: #000;
+    }
+
+    &-box--sm {
+      .item__genre {
+        &-element {
+          height: calc(50% - 6px);
+          margin: 3px;
+          width: calc(50% - 6px);
+        }
+
+        &-icon {
+          height: 100%;
+          width: 100%;
+        }
+
+        &-name {
+          display: none;
+        }
+      }
+    }
+
+    &-box--lg {
+      .item__genre {
+        &-element {
+          margin: 6px 5px;
+        }
+
+        &-icon {
+          height: 30px;
+          width: 30px;
+        }
+
+        &-name {
+          cursor: default;
+          margin: 0 5px 0 10px;
+        }
+      }
+    }
+
+    &:hover {
+      .item__genre {
+        &-box--sm {
+          opacity: 0;
+        }
+
+        &-box--lg {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &__bottom {
+    line-height: 1.4;
+    margin: 0 -100%;
+    padding: 15px 0;
+
+    @media (max-width: 768px) {
+      margin: 0 -50%;
+    }
+
+    @media (max-width: 640px) {
+      margin: 0 -25%;
+    }
+  }
+
+  &__cast {
+    margin-bottom: 10px;
+  }
+
+  &__director,
+  &__actors {
+    display: block;
+    font-weight: 500;
+
+    span {
+      font-weight: 400;
+    }
+  }
+
+  &__overview {
+    font-size: 17px;
+  }
+}
+
+.swiper-slide-active {
+  .item__description {
+    opacity: 1;
+  }
+
+  .item__shadow {
+    opacity: 0;
+  }
+
+  & ~ .swiper-slide {
+    .item__shadow--right {
+      opacity: 1;
+    }
+  }
+}

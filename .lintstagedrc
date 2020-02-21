@@ -1,0 +1,6 @@
+{
+  "**/*.+(js|jsx|yml|yaml|ts|tsx|md|graphql|mdx)": [
+    "prettier --write",
+    "git add"
+  ]
+}
