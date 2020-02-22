@@ -33,11 +33,11 @@ const getNowPlaying = async movieItemsTMDb => {
   await Promise.all([ajaxRequest(requestTMDb), ajaxRequest(`${requestTMDbWithPage}`)])
     .then(([nowPlayingPage1, nowPlayingPage2]) => {
       const { results: nowPlayingPage1Results } = nowPlayingPage1;
-      let { results: nowPlayingPage2Results } = nowPlayingPage2;
+      const { results: nowPlayingPage2Results } = nowPlayingPage2;
 
-      nowPlayingPage2Results = nowPlayingPage2Results.slice(0, nowPlayingPage2Results.length - 2); // to avoid TMDb API 40 requests limit
+      const slicedNowPlayingPage2Results = nowPlayingPage2Results.slice(0, nowPlayingPage2Results.length - 2); // to avoid TMDb API 40 requests limit
 
-      const nowPlayingResults = nowPlayingPage1Results.concat(nowPlayingPage2Results);
+      const nowPlayingResults = nowPlayingPage1Results.concat(slicedNowPlayingPage2Results);
 
       nowPlayingResults.forEach(item => {
         item.poster = item.poster_path ? `${posterPath}${item.poster_path}` : null;
@@ -129,16 +129,15 @@ const sortByRating = async movieItemsTMDb => {
   return movieItemsTMDb;
 };
 
-const updateState = async movieItemsTMDb => {
-  return new Promise((resolve, reject) => {
+const updateState = async movieItemsTMDb =>
+  new Promise((resolve, reject) => {
     JSON.stringify(movieItemsTMDb);
 
     resolve(movieItemsTMDb);
   });
-};
 
-export const initSlider = async () => {
-  return new Promise((resolve, reject) => {
+export const initSlider = async () =>
+  new Promise((resolve, reject) => {
     new Swiper('.swiper-container', {
       effect: 'coverflow',
       centeredSlides: true,
@@ -163,7 +162,6 @@ export const initSlider = async () => {
       }
     });
   });
-};
 
 export const getMovies = async movieItemsTMDb => {
   const nowPlayingMovies = await getNowPlaying(movieItemsTMDb);

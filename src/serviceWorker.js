@@ -39,7 +39,9 @@ export function register(config) {
         // Add some additional logging to localhost, pointing developers to the
         // service worker/PWA documentation.
         navigator.serviceWorker.ready.then(() => {
-          console.log('This web app is being served cache-first by a service ' + 'worker. To learn more, visit https://bit.ly/CRA-PWA');
+          /* eslint-disable no-console */
+          console.log('This web app is being served cache-first by a service worker. To learn more, visit http://bit.ly/CRA-PWA');
+          /* eslint-enable */
         });
       } else {
         // Is not localhost. Just register service worker
@@ -64,7 +66,9 @@ function registerValidSW(swUrl, config) {
               // At this point, the updated precached content has been fetched,
               // but the previous service worker will still serve the older
               // content until all client tabs are closed.
-              console.log('New content is available and will be used when all ' + 'tabs for this page are closed. See https://bit.ly/CRA-PWA.');
+              /* eslint-disable no-console */
+              console.log('New content is available and will be used when all tabs for this page are closed. See http://bit.ly/CRA-PWA.');
+              /* eslint-enable */
 
               // Execute callback
               if (config && config.onUpdate) {
@@ -74,7 +78,9 @@ function registerValidSW(swUrl, config) {
               // At this point, everything has been precached.
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
+              /* eslint-disable no-console */
               console.log('Content is cached for offline use.');
+              /* eslint-enable */
 
               // Execute callback
               if (config && config.onSuccess) {
@@ -86,7 +92,9 @@ function registerValidSW(swUrl, config) {
       };
     })
     .catch(error => {
+      /* eslint-disable no-console */
       console.error('Error during service worker registration:', error);
+      /* eslint-enable */
     });
 }
 
@@ -109,7 +117,9 @@ function checkValidServiceWorker(swUrl, config) {
       }
     })
     .catch(() => {
+      /* eslint-disable no-console */
       console.log('No internet connection found. App is running in offline mode.');
+      /* eslint-enable */
     });
 }
 
