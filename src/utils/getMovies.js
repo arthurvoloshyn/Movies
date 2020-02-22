@@ -101,6 +101,11 @@ const getOMDbInfo = async movieItemsTMDb => {
         movieInfo.imdbRating = defaultImdbRating;
       }
 
+      if (isNaN(movieInfo.Actors)) {
+        // may be "N/A"
+        movieInfo.Actors = defaultImdbRating;
+      }
+
       movieItemsTMDb[i] = {
         ...currTMDbItem,
         imdbRating: movieInfo.imdbRating,
