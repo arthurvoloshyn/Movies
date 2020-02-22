@@ -68,9 +68,7 @@ const getTMDbInfo = async movieItemsTMDb => {
       if (trailersLength > 0) {
         const lastTrailer = trailers[trailersLength - 1];
 
-        if (lastTrailer.site === trailerSite) {
-          trailerUrl = `${YOUTUBE_BASE_PATH}?${YOUTUBE_WATCH_PARAM}${lastTrailer.key}`;
-        }
+        trailerUrl = lastTrailer.site === trailerSite ? `${YOUTUBE_BASE_PATH}?${YOUTUBE_WATCH_PARAM}${lastTrailer.key}` : trailerUrl;
       }
 
       movieItemsTMDb[i] = {
@@ -86,25 +84,20 @@ const getTMDbInfo = async movieItemsTMDb => {
 };
 
 const getOMDbInfo = async movieItemsTMDb => {
-  const { defaultImdbRating } = defaultProps.singleSlider;
+  const { defaultImdbRating, defaultActors } = defaultProps.singleSlider;
 
   if (movieItemsTMDb.length) {
     for (let i = 0; i < movieItemsTMDb.length; i++) {
       const currTMDbItem = movieItemsTMDb[i];
       const currIMDbId = currTMDbItem.imdb_id;
       const requestOMDb = `${OMDB_BASE_PATH}?${OMDB_I_PARAM}${currIMDbId}&${OMDB_API_KEY}${OMDbAPI}`;
+      const emptyData = 'N/A';
 
       const movieInfo = await ajaxRequest(requestOMDb);
 
-      if (isNaN(movieInfo.imdbRating)) {
-        // may be "N/A"
-        movieInfo.imdbRating = defaultImdbRating;
-      }
+      movieInfo.imdbRating = isNaN(movieInfo.imdbRating) ? defaultImdbRating : movieInfo.imdbRating; // may be "N/A"
 
-      if (isNaN(movieInfo.Actors)) {
-        // may be "N/A"
-        movieInfo.Actors = defaultImdbRating;
-      }
+      movieInfo.Actors = movieInfo.Actors === emptyData ? defaultActors : movieInfo.Actors;
 
       movieItemsTMDb[i] = {
         ...currTMDbItem,
