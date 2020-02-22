@@ -9,6 +9,7 @@
   ],
   "**/*.+(css|scss|sass|less)": [
     "prettier --parser scss --write",
+    "stylelint --fix --syntax scss --max-warnings=0",
     "git add"
   ]
 }
