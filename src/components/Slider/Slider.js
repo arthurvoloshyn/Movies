@@ -5,7 +5,7 @@ import 'swiper/dist/css/swiper.css';
 
 import './Slider.scss';
 
-import SingleSlide from './SingleSlide/SingleSlide';
+import SingleSlide from '../SingleSlide/SingleSlide';
 
 const Slider = ({ movies }) => (
   <div className="swiper-container">

@@ -5,8 +5,8 @@ import staticContent from './constants/staticContent';
 
 import { getMovies, initSlider } from './utils/getMovies';
 
-import Slider from './Slider/Slider';
-import Preloader from './Preloader/Preloader';
+import Slider from './components/Slider/Slider';
+import Preloader from './components/Preloader/Preloader';
 
 import './styles/App.scss';
 
