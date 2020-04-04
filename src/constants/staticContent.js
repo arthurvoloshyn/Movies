@@ -8,7 +8,7 @@ const staticContent = {
   credentials: 'Made by Artur Voloshyn',
   codeResource: 'GitHub',
   resourceCodeLink: 'https://github.com/ArturW1998/Movies/',
-  mail: 'grand_faraon_93@mail.ru'
+  mail: 'arthurvoloshyn@gmail.com'
 };
 
 export default staticContent;
