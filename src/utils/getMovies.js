@@ -53,64 +53,58 @@ const getNowPlaying = async movieItemsTMDb => {
 const getTMDbInfo = async movieItemsTMDb => {
   const { trailerSite } = staticContent;
 
-  if (movieItemsTMDb.length) {
-    for (let i = 0; i < movieItemsTMDb.length; i++) {
-      const currTMDbItem = movieItemsTMDb[i];
-      const currTMDbId = currTMDbItem.id;
-      const requestTMDb = `${BASE_PATH}/${currTMDbId}?${API_KEY}${TMDbAPI}&${DATA_PARAM}${DATA_QUERY}&${LANGUAGE_PARAM}${LANGUAGE_QUERY}`;
+  const promises = movieItemsTMDb.map(async currTMDbItem => {
+    const currTMDbId = currTMDbItem.id;
+    const requestTMDb = `${BASE_PATH}/${currTMDbId}?${API_KEY}${TMDbAPI}&${DATA_PARAM}${DATA_QUERY}&${LANGUAGE_PARAM}${LANGUAGE_QUERY}`;
 
-      const movieInfo = await ajaxRequest(requestTMDb);
+    const movieInfo = await ajaxRequest(requestTMDb);
 
-      const { results: trailers } = movieInfo.videos;
-      let trailerUrl = '';
-      const trailersLength = trailers.length;
+    const { results: trailers } = movieInfo.videos;
+    let trailerUrl = '';
+    const trailersLength = trailers.length;
 
-      if (trailersLength > 0) {
-        const lastTrailer = trailers[trailersLength - 1];
+    if (trailersLength > 0) {
+      const lastTrailer = trailers[trailersLength - 1];
 
-        trailerUrl = lastTrailer.site === trailerSite ? `${YOUTUBE_BASE_PATH}?${YOUTUBE_WATCH_PARAM}${lastTrailer.key}` : trailerUrl;
-      }
-
-      movieItemsTMDb[i] = {
-        ...currTMDbItem,
-        imdb_id: movieInfo.imdb_id,
-        trailer_url: trailerUrl,
-        genres: movieInfo.genres
-      };
+      trailerUrl = lastTrailer.site === trailerSite ? `${YOUTUBE_BASE_PATH}?${YOUTUBE_WATCH_PARAM}${lastTrailer.key}` : trailerUrl;
     }
-  }
 
-  return movieItemsTMDb;
+    return {
+      ...currTMDbItem,
+      imdb_id: movieInfo.imdb_id,
+      trailer_url: trailerUrl,
+      genres: movieInfo.genres
+    };
+  });
+
+  return movieItemsTMDb.length ? Promise.all(promises) : movieItemsTMDb;
 };
 
 const getOMDbInfo = async movieItemsTMDb => {
   const { defaultImdbRating, defaultActors } = defaultProps.singleSlider;
 
-  if (movieItemsTMDb.length) {
-    for (let i = 0; i < movieItemsTMDb.length; i++) {
-      const currTMDbItem = movieItemsTMDb[i];
-      const currIMDbId = currTMDbItem.imdb_id;
-      const requestOMDb = `${OMDB_BASE_PATH}?${OMDB_I_PARAM}${currIMDbId}&${OMDB_API_KEY}${OMDbAPI}`;
-      const emptyData = 'N/A';
+  const promises = movieItemsTMDb.map(async currTMDbItem => {
+    const currIMDbId = currTMDbItem.imdb_id;
+    const requestOMDb = `${OMDB_BASE_PATH}?${OMDB_I_PARAM}${currIMDbId}&${OMDB_API_KEY}${OMDbAPI}`;
+    const emptyData = 'N/A';
 
-      const movieInfo = await ajaxRequest(requestOMDb);
+    const movieInfo = await ajaxRequest(requestOMDb);
 
-      movieInfo.imdbRating = isNaN(movieInfo.imdbRating) ? defaultImdbRating : movieInfo.imdbRating; // may be "N/A"
+    movieInfo.imdbRating = isNaN(movieInfo.imdbRating) ? defaultImdbRating : movieInfo.imdbRating; // may be "N/A"
 
-      movieInfo.Actors = movieInfo.Actors === emptyData ? defaultActors : movieInfo.Actors;
+    movieInfo.Actors = movieInfo.Actors === emptyData ? defaultActors : movieInfo.Actors;
 
-      movieItemsTMDb[i] = {
-        ...currTMDbItem,
-        imdbRating: movieInfo.imdbRating,
-        director: movieInfo.Director,
-        actors: movieInfo.Actors,
-        metascore: movieInfo.Metascore, // may be "N/A"
-        year: movieInfo.Year
-      };
-    }
-  }
+    return {
+      ...currTMDbItem,
+      imdbRating: movieInfo.imdbRating,
+      director: movieInfo.Director,
+      actors: movieInfo.Actors,
+      metascore: movieInfo.Metascore, // may be "N/A"
+      year: movieInfo.Year
+    };
+  });
 
-  return movieItemsTMDb;
+  return movieItemsTMDb.length ? Promise.all(promises) : movieItemsTMDb;
 };
 
 const sortByRating = async movieItemsTMDb => {
