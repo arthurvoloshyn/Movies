@@ -1,14 +1,10 @@
 const staticContent = {
-  raitingTitle: 'IMDb',
+  ratingTitle: 'IMDb',
   metaScoreTitle: 'Critics',
   trailerTitle: 'Trailer',
   trailerSite: 'YouTube',
   directorTitle: 'Producer',
-  actorsTitle: 'Cast',
-  credentials: 'Made by Artur Voloshyn',
-  codeResource: 'GitHub',
-  resourceCodeLink: 'https://github.com/ArturW1998/Movies/',
-  mail: 'arthurvoloshyn@gmail.com'
+  actorsTitle: 'Cast'
 };
 
 export default staticContent;

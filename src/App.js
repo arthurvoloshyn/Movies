@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-import staticContent from './constants/staticContent';
-
 import { getMovies, initSlider } from './utils/getMovies';
 
 import Slider from './components/Slider/Slider';
@@ -33,7 +31,6 @@ class App extends Component {
 
   render() {
     const { contentLoading, movies } = this.state;
-    const { credentials, codeResource, resourceCodeLink, mail } = staticContent;
 
     return (
       <>
@@ -43,14 +40,6 @@ class App extends Component {
 
         <CSSTransition in={!contentLoading} timeout={1000} classNames="animation">
           <div className="content">
-            <div className="credentials">
-              <p>{credentials}</p>
-              <a href={resourceCodeLink} target="_blank" rel="noopener noreferrer">
-                {codeResource}
-              </a>
-              &nbsp;
-              <a href={`mailto:${mail}`}>{mail}</a>
-            </div>
             <Slider movies={movies} />
           </div>
         </CSSTransition>

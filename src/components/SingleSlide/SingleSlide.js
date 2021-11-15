@@ -9,7 +9,7 @@ import GenresList from '../GenresList/GenresList';
 import './SingleSlide.scss';
 
 const { defaultOverview, defaultYear, defaultDirector, defaultActors, defaultPoster, defaultImdbRating } = defaultProps.singleSlider;
-const { raitingTitle, metaScoreTitle, trailerTitle, trailerSite, directorTitle, actorsTitle } = staticContent;
+const { ratingTitle, metaScoreTitle, trailerTitle, trailerSite, directorTitle, actorsTitle } = staticContent;
 
 const SingleSlide = ({ movie: { genres, poster, title, year, imdbRating, metascore, trailer_url, director, actors, overview } }) => (
   <div className="swiper-slide item">
@@ -26,7 +26,7 @@ const SingleSlide = ({ movie: { genres, poster, title, year, imdbRating, metasco
 
       <div className="item__description item__marks">
         <div className=" item__sidebar item__sidebar--imdb">
-          <span className="item__sidebar-title">{raitingTitle}</span>
+          <span className="item__sidebar-title">{ratingTitle}</span>
 
           <span className="item__sidebar-number">{imdbRating}</span>
         </div>
